@@ -1,4 +1,4 @@
-# sci-hub
+# sci-hub addon
 
 chromium addon for sci-hub link parsing
   - via context menu
