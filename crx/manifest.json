@@ -1,0 +1,43 @@
+{
+
+  "manifest_version": 2,
+  "name": "sci-hub",
+  "version": "1.1",
+
+  "description": "Sci-hub url parser to make your research easier!",
+  "icons": {
+    "128": "img/icon128.png",
+    "64": "img/icon64.png",
+    "48": "img/icon48.png",
+    "16": "img/icon16.png"
+  },
+
+  "permissions": [
+    "contextMenus",
+    "https://sci-hub.tw/*",
+    "https://scholar.google.com/*"
+  ],
+
+  "page_action": {
+    "default_icon": "img/icon48.png",
+    "default_title": "sci-hub"
+  },
+
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://scholar.google.com/*"],
+      "js": ["js/highlight.js", "js/scholar.js"]
+    },
+    {
+      "matches": ["https://sci-hub.tw/*"],
+      "js": ["js/highlight.js"]
+    }
+  ]
+
+
+}
