@@ -20,6 +20,6 @@ var properties = {
 chrome.contextMenus.create(properties)
 chrome.contextMenus.onClicked.addListener(function(event) {
 
-  window.open("https://sci-hub.tw/" + event.linkUrl, '_blank');
+  window.open("https://www.sci-hub.do/" + event.linkUrl, '_blank');
 
 });

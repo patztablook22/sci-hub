@@ -6,7 +6,7 @@
 
     event.preventDefault();
     var target = event.target
-    var url = "https://sci-hub.tw/"
+    var url = "https://sci-hub.do/"
 
     if (target.tagName != 'A')
       target = target.parentElement;
