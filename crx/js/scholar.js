@@ -1,34 +1,38 @@
-(function() {
+const openLink = (event) => {
 
-  'use strict'
+  // don't open the usual link
+  event.preventDefault();
 
-  const parse = function(event) {
+  // get its url
+  var target = event.target;
+  if (target.tagName != 'A')
+    target = target.parentElement;
 
-    event.preventDefault();
-    var target = event.target
-    var url = "https://sci-hub.do/"
+  // get sci-hub domain
+  chrome.storage.sync.get({
+    domain: "https://sci-hub.se/"
+  }, (data) => {
 
-    if (target.tagName != 'A')
-      target = target.parentElement;
+    // open with given domain
+    window.open(data.domain + target, '_blank');
 
-    url += target;
-    window.open(url, '_blank');
+  });
 
+};
+
+const bind = () => {
+
+  // query all search results
+  const links = document.querySelectorAll("#gs_res_ccl_mid .gs_rt a");
+
+  // bind them
+  try {
+    links.forEach((link) => {
+      link.onclick = openLink;
+    });
+  } catch {
   }
 
-  const bind = function() {
+};
 
-    const links = document.querySelectorAll(".gs_rt a");
-
-    try {
-      links.forEach(function(link) {
-        link.onclick = parse;
-      });
-    } catch {
-    }
-
-  }
-
-  bind();
-
-})();
+bind();

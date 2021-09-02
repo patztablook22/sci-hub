@@ -1,25 +1,24 @@
-chrome.runtime.onMessage.addListener(
-  function(request, sender, response) {
+const openLink = (event) => {
 
-    chrome.tabs.query(
-      {active: true, currentWindow: true},
-      function(tabs) {
+  // get sci-hub domain
+  chrome.storage.sync.get({
+    domain: "https://sci-hub.se/"
+  }, (data) => {
 
-        chrome.pageAction.show(tabs[0].id);
-
-      });
+    // open with given domain
+    chrome.tabs.create({
+      "url": data.domain + event.linkUrl
+    });
 
   });
 
-var properties = {
-  "id": "parse",
-  "title": "sci-hub",
-  "contexts": ["link"]
-}
+};
 
-chrome.contextMenus.create(properties)
-chrome.contextMenus.onClicked.addListener(function(event) {
-
-  window.open("https://www.sci-hub.do/" + event.linkUrl, '_blank');
-
+// create context menu element
+chrome.contextMenus.create({
+  "id": "Sci-Hub",
+  "title": "Open with Sci-Hub",
+  "contexts": ["link"],
 });
+
+chrome.contextMenus.onClicked.addListener(openLink);

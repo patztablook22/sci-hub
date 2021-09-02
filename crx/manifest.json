@@ -1,7 +1,7 @@
 {
 
-  "manifest_version": 2,
-  "name": "sci-hub",
+  "manifest_version": 3,
+  "name": "Enhancer for Sci-Hub",
   "version": "1.1",
 
   "description": "Sci-hub url parser to make your research easier!",
@@ -12,20 +12,26 @@
     "16": "img/icon16.png"
   },
 
+  "options_page": "html/options.html",
+
   "permissions": [
     "contextMenus",
-    "https://sci-hub.do/*",
-    "https://scholar.google.com/*"
+    "storage"
   ],
 
-  "page_action": {
-    "default_icon": "img/icon48.png",
-    "default_title": "sci-hub"
-  },
+  "host_permissions": [
+    "https://scholar.google.com/*",
+    "https://sci-hub.se/*",
+    "https://sci-hub.do/*",
+    "https://sci-hub.tf/*",
+    "https://sci-hub.st/*",
+    "https://sci-hub.ren/*",
+    "https://sci-hub.shop/*",
+    "https://sci-hub.it.nf/*"
+  ],
 
   "background": {
-    "scripts": ["js/background.js"],
-    "persistent": false
+    "service_worker": "js/background.js"
   },
 
   "content_scripts": [
@@ -34,10 +40,17 @@
       "js": ["js/highlight.js", "js/scholar.js"]
     },
     {
-      "matches": ["https://sci-hub.do/*"],
-      "js": ["js/highlight.js"]
+      "matches": [
+        "*://sci-hub.se/*","*://www.sci-hub.se/*",
+        "*://sci-hub.do/*","*://www.sci-hub.do/*",
+        "*://sci-hub.tf/*","*://www.sci-hub.tf/*",
+        "*://sci-hub.st/*","*://www.sci-hub.st/*",
+        "*://sci-hub.ren/*","*://www.sci-hub.ren/*",
+        "*://sci-hub.shop/*","*://www.sci-hub.shop/*",
+        "*://sci-hub.it.nf/*","*://www.sci-hub.it.nf/*"
+      ],
+      "js": ["js/highlight.js", "js/sci-hub.js"]
     }
   ]
-
 
 }
