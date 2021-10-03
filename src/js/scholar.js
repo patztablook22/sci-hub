@@ -1,38 +1,30 @@
 const openLink = (event) => {
-
   // don't open the usual link
   event.preventDefault();
 
   // get its url
   var target = event.target;
-  if (target.tagName != 'A')
+  if (target.tagName != 'A') {
     target = target.parentElement;
+  }
 
   // get sci-hub domain
-  chrome.storage.sync.get({
-    domain: "https://sci-hub.se/"
-  }, (data) => {
-
-    // open with given domain
+  chrome.storage.sync.get({ domain: "https://sci-hub.se/" }, data => {
+    // open with the configured domain
     window.open(data.domain + target, '_blank');
-
   });
-
 };
 
-const bind = () => {
-
+(function () {
   // query all search results
   const links = document.querySelectorAll("#gs_res_ccl_mid .gs_rt a");
 
-  // bind them
+  // bind event listeners to them
   try {
     links.forEach((link) => {
-      link.onclick = openLink;
+      link.addEventListener("click", openLink);
     });
-  } catch {
+  } catch (error) {
+    console.warn(error);
   }
-
-};
-
-bind();
+})();
