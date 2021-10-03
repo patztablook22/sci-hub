@@ -1,9 +1,7 @@
 {
-
   "manifest_version": 3,
   "name": "Enhancer for Sci-Hub",
   "version": "1.1",
-
   "description": "Sci-hub url parser to make your research easier!",
   "icons": {
     "128": "img/icon128.png",
@@ -11,14 +9,20 @@
     "48": "img/icon48.png",
     "16": "img/icon16.png"
   },
-
-  "options_page": "html/options.html",
-
+  "action": {
+    "default_popup": "html/options.html",
+    "default_title": "Enhancer for Sci-Hub",
+    "icons": {
+      "128": "img/icon128.png",
+      "64": "img/icon64.png",
+      "48": "img/icon48.png",
+      "16": "img/icon16.png"
+    }
+  },
   "permissions": [
     "contextMenus",
     "storage"
   ],
-
   "host_permissions": [
     "https://scholar.google.com/*",
     "https://sci-hub.se/*",
@@ -29,28 +33,40 @@
     "https://sci-hub.shop/*",
     "https://sci-hub.it.nf/*"
   ],
-
   "background": {
     "service_worker": "js/background.js"
   },
-
   "content_scripts": [
     {
-      "matches": ["https://scholar.google.com/*"],
-      "js": ["js/highlight.js", "js/scholar.js"]
+      "matches": [
+        "https://scholar.google.com/*"
+      ],
+      "js": [
+        "js/highlight.js",
+        "js/scholar.js"
+      ]
     },
     {
       "matches": [
-        "*://sci-hub.se/*","*://www.sci-hub.se/*",
-        "*://sci-hub.do/*","*://www.sci-hub.do/*",
-        "*://sci-hub.tf/*","*://www.sci-hub.tf/*",
-        "*://sci-hub.st/*","*://www.sci-hub.st/*",
-        "*://sci-hub.ren/*","*://www.sci-hub.ren/*",
-        "*://sci-hub.shop/*","*://www.sci-hub.shop/*",
-        "*://sci-hub.it.nf/*","*://www.sci-hub.it.nf/*"
+        "*://sci-hub.se/*",
+        "*://www.sci-hub.se/*",
+        "*://sci-hub.do/*",
+        "*://www.sci-hub.do/*",
+        "*://sci-hub.tf/*",
+        "*://www.sci-hub.tf/*",
+        "*://sci-hub.st/*",
+        "*://www.sci-hub.st/*",
+        "*://sci-hub.ren/*",
+        "*://www.sci-hub.ren/*",
+        "*://sci-hub.shop/*",
+        "*://www.sci-hub.shop/*",
+        "*://sci-hub.it.nf/*",
+        "*://www.sci-hub.it.nf/*"
       ],
-      "js": ["js/highlight.js", "js/sci-hub.js"]
+      "js": [
+        "js/highlight.js",
+        "js/sci-hub.js"
+      ]
     }
   ]
-
 }

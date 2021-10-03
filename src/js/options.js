@@ -1,11 +1,16 @@
 const domain = document.querySelector("select#domain");
-const hide   = document.querySelector("input#hide");
+const sidebar = document.querySelector("select#sidebar");
+
+const notice = document.querySelector("figure.update-notice");
 
 const save = () => {
   chrome.storage.sync.set({
     domain: domain.value,
-    hide: hide.checked
+    hide: sidebar.value === "false"
   });
+
+  notice.classList.remove("update-notice--hidden");
+  window.setTimeout(() => notice.classList.add("update-notice--hidden"), 5000);
 }
 
 const load = () => {
@@ -14,11 +19,11 @@ const load = () => {
     hide: true
   }, (data) => {
     domain.value = data.domain;
-    hide.checked = data.hide;
+    sidebar.value = data.hide ? "false" : "true";
   });
 }
 
 document.addEventListener("DOMContentLoaded", load);
 domain.addEventListener("change", save);
-hide.addEventListener("change", save);
+sidebar.addEventListener("change", save);
 
