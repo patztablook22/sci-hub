@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <title>Sci-Hub options</title>
-    <link rel="stylesheet" href="/css/options.css" href="text/css" />
+<head>
+  <title>Sci-Hub options</title>
+  <link rel="stylesheet" href="/css/options.css" href="text/css" />
+</head>
 
-  </head>
-  <body>
+<body>
+  <figure class="update-notice update-notice--hidden">
+    <img src="/img/icons/check-circle.svg" alt="Check">
+    <figcaption>Options updated!</figcaption>
+  </figure>
+  <form>
+    <h1>Enhancer for Sci-Hub</h1>
 
-    <form>
-
-      <h1>Enhancer for Sci-Hub</h1>
-
-      <hr />
-
+    <div class="settings">
+      <div class="input">
+        <label for="domain">Domain</label>
+        <select id="domain">
+          <option value="https://sci-hub.se/">https://sci-hub.se/</option>
+          <option value="https://sci-hub.do/">https://sci-hub.do/</option>
+          <option value="https://sci-hub.tf/">https://sci-hub.tf/</option>
+          <option value="https://sci-hub.st/">https://sci-hub.st/</option>
+          <option value="https://sci-hub.ren/">https://sci-hub.ren/</option>
+          <option value="https://sci-hub.shop/">https://sci-hub.shop/</option>
+          <option value="https://sci-hub.it.nf/">https://sci-hub.it.nf/</option>
+        </select>
+      </div>
+      <div class="input">
+        <label for="sidebar">Sci-Hub sidebar</label>
+        <select id="sidebar">
+          <option value="true">Show</option>
+          <option value="false">Hide</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <section class="bug-report">
+      <img src="/img/icons/frown.svg" alt="Frowning face">
       <p>
-      <label>Domain:</label>
-      <select id="domain">
-        <option>https://sci-hub.se/</option>
-        <option>https://sci-hub.do/</option>
-        <option>https://sci-hub.tf/</option>
-        <option>https://sci-hub.st/</option>
-        <option>https://sci-hub.ren/</option>
-        <option>https://sci-hub.shop/</option>
-        <option>https://sci-hub.it.nf/</option>
-      </select>
+        Something isn't working? <br>
+        Let me know <a href="https://github.com/patztablook22/sci-hub/issues" target=_blank>here</a>!
       </p>
+  </section>
+  <footer>
+    <a class="author" href="https://github.com/patztablook22" target=_blank>
+      <img src="/img/avatar.png" alt="Avatar" />
+      <span>patztablook22</span>
+    </a>
+  </footer>
+  <script src="/js/options.js"></script>
+</body>
 
-      <p>
-      <label>Hide sidebar:</label>
-      <input type="checkbox" id="hide" />
-      </p>
-
-      <hr />
-
-      <p>
-      Something isn't working?
-      Let me know 
-      <a href="https://github.com/patztablook22/sci-hub/issues" target=_blank>here</a>!
-      </p>
-
-      <a id="me" href="https://github.com/patztablook22" target=_blank>
-        <img src="/img/avatar.png" />
-        <span>patztablook22</span>
-      </a>
-
-    </form>
-
-    <script src="/js/options.js"></script>
-
-  </body>
 </html>
