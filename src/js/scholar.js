@@ -1,18 +1,32 @@
-const openLink = (event) => {
+const extractUrlFromLinkEvent = event => {
+  // get its url
+  const target = event.target.tagName.toUpperCase() == "A" 
+    ? event.target
+    : event.target.parentElement;
+
+  return target.getAttribute("href");
+}
+
+const withSciHubLink = (url, callback) => {
+  // get sci-hub domain
+  chrome.storage.sync.get({ domain: "https://sci-hub.se/" }, data => {
+    callback(data.domain + url);
+  });
+};
+
+const openLink = event => {
   // don't open the usual link
   event.preventDefault();
 
-  // get its url
-  var target = event.target;
-  if (target.tagName != 'A') {
-    target = target.parentElement;
-  }
+  // Get the link url
+  const url = extractUrlFromLinkEvent(event);
 
-  // get sci-hub domain
-  chrome.storage.sync.get({ domain: "https://sci-hub.se/" }, data => {
-    // open with the configured domain
-    window.open(data.domain + target, '_blank');
-  });
+  // open the link with configured sci-hub domain
+  withSciHubLink(url, link => window.open(link, "_blank"));
+};
+
+const checkForDeadLink = event => {
+  console.log(event);
 };
 
 (function () {
@@ -22,6 +36,7 @@ const openLink = (event) => {
   // bind event listeners to them
   try {
     links.forEach((link) => {
+      link.addEventListener("mouseover", checkForDeadLink);
       link.addEventListener("click", openLink);
     });
   } catch (error) {
