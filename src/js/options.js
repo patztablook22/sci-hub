@@ -6,7 +6,7 @@ const notice = document.querySelector("figure.update-notice");
 const save = () => {
   chrome.storage.sync.set({
     domain: domain.value,
-    hide: sidebar.value === "false"
+    hide: sidebar.value === "hide"
   });
 
   notice.classList.remove("update-notice--hidden");
@@ -19,7 +19,7 @@ const load = () => {
     hide: true
   }, (data) => {
     domain.value = data.domain;
-    sidebar.value = data.hide ? "false" : "true";
+    sidebar.value = data.hide ? "hide" : "show";
   });
 }
 
